@@ -1,0 +1,13 @@
+services:
+  server:
+    command: '-Dsonar.forceAuthentication=false'
+    image: sonarqube:lts
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/opt/sonarqube/conf
+  scanner:
+    image: sonarsource/sonar-scanner-cli
+    volumes:
+      - $SONAR_PROJECT_DIR:/usr/src
+version: '3.8'
